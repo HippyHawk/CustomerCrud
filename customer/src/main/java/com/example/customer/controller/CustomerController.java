@@ -2,13 +2,13 @@ package com.example.customer.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -97,5 +97,21 @@ public class CustomerController {
 		customerRepo.saveAll(customers); //customers must never be null or must never contain null
 		return new ResponseEntity<String>("Created!", HttpStatus.OK);
 	}
+	
+	@PatchMapping("/age/{id}")
+	public ResponseEntity<?> updateAge(@PathVariable("id") Long id, @RequestBody int age){
+		if (customerRepo.findById(id).isPresent()) {
+			Customer customer= new Customer();
+			customer.setId(id);
+			customer.setAge(age);
+			customerRepo.save(customer);
+			return new ResponseEntity<Customer>(customerRepo.findById(id).get(), HttpStatus.OK);
+		}
+		else {
+			return new ResponseEntity<String>("Invalid id : "+ id , HttpStatus.NOT_FOUND);
+		}
+	}
+
+
 
 }
