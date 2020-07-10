@@ -98,12 +98,12 @@ public class CustomerController {
 		return new ResponseEntity<String>("Created!", HttpStatus.OK);
 	}
 	
-	@PatchMapping("/age/{id}")
-	public ResponseEntity<?> updateAge(@PathVariable("id") Long id, @RequestBody int age){
+	@PatchMapping("/name/{id}")
+	public ResponseEntity<?> updateAge(@PathVariable("id") Long id, @RequestBody String name){
 		if (customerRepo.findById(id).isPresent()) {
 			Customer customer= new Customer();
 			customer.setId(id);
-			customer.setAge(age);
+			customer.setName(name);
 			customerRepo.save(customer);
 			return new ResponseEntity<Customer>(customerRepo.findById(id).get(), HttpStatus.OK);
 		}
