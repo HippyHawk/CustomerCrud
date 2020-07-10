@@ -102,6 +102,7 @@ public class CustomerController {
 	public ResponseEntity<?> updateAge(@PathVariable("id") Long id, @RequestBody String name){
 		if (customerRepo.findById(id).isPresent()) {
 			Customer customer= new Customer();
+			customer = customerRepo.findById(id).get();
 			customer.setId(id);
 			customer.setName(name);
 			customerRepo.save(customer);
