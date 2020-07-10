@@ -99,11 +99,10 @@ public class CustomerController {
 	}
 	
 	@PatchMapping("/name/{id}")
-	public ResponseEntity<?> updateAge(@PathVariable("id") Long id, @RequestBody String name){
+	public ResponseEntity<?> updateName(@PathVariable("id") Long id, @RequestBody String name){
 		if (customerRepo.findById(id).isPresent()) {
 			Customer customer= new Customer();
 			customer = customerRepo.findById(id).get();
-			customer.setId(id);
 			customer.setName(name);
 			customerRepo.save(customer);
 			return new ResponseEntity<Customer>(customerRepo.findById(id).get(), HttpStatus.OK);
