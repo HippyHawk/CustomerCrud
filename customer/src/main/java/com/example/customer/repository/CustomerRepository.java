@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import com.example.customer.model.Customer;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RepositoryRestResource(collectionResourceRel = "customer",path = "customer")
+//@ValidateOnExecution
+//@Validated
 public interface CustomerRepository extends CrudRepository<Customer, Long> {
 	
 }

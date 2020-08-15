@@ -19,7 +19,6 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class Customer {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)

@@ -18,8 +18,7 @@ public class StoryBlocksApi {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	private String storyBlocksApi;
-	private String fileServerApi;
-	private String contentDownloadApi;
+	private String resourceUri;
+	private String downloadLinks;
 
 }
